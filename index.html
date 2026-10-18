@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biotech & Pharma Digital QMS Specialist | Solution Consultant</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#035485',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        cyanAccent: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        },
+                        slateDark: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .glass-card-dark {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+        }
+        .hero-bg-light {
+            background: radial-gradient(circle at 70% 30%, rgba(56, 189, 248, 0.12), transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.08), transparent 50%),
+                        #f8fafc;
+        }
+        .hero-bg-dark {
+            background: radial-gradient(circle at 70% 30%, rgba(14, 165, 233, 0.18), transparent 55%),
+                        radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.12), transparent 55%),
+                        #020617;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-card-light dark:glass-card-dark transition-all duration-300 shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <div class="flex items-center gap-3">
+                    <img 
+                        src="https://img.ai365.fans/cdn-cgi/image/width=1400,quality=90,format=auto/artworks/f97a83c1-a180-474f-aeb7-76875de13cf1/vwqi4p4ddmp.png" 
+                        alt="Profile Avatar" 
+                        class="w-10 h-10 rounded-full object-cover border-2 border-brand-400 dark:border-brand-500 shadow-sm"
+                        onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=QMS'"
+                    />
+                    <div>
+                        <span class="text-base font-bold text-slate-900 dark:text-white block leading-tight tracking-tight">Digital QMS</span>
+                        <span class="text-xs text-brand-600 dark:text-brand-400 font-medium tracking-wider uppercase">Solution Consultant</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation Menu & Action Controls -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 font-medium transition-colors text-sm">關於我</a>
+                    <a href="#impact" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 font-medium transition-colors text-sm">量化成果</a>
+                    <a href="#competencies" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 font-medium transition-colors text-sm">專業技能</a>
+                    <a href="#philosophy" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 font-medium transition-colors text-sm">核心信念</a>
+
+                    <div class="flex items-center gap-2 border-l border-slate-200 dark:border-slate-800 pl-4">
+                        <!-- Music Toggle Button -->
+                        <button id="music-btn" type="button" class="p-2.5 rounded-full bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all cursor-pointer" title="播放 / 暫停背景音樂">
+                            <i class="fa-solid fa-music" id="music-icon"></i>
+                        </button>
+                        <!-- Dark / Light Theme Toggle Button -->
+                        <button id="theme-btn" type="button" class="p-2.5 rounded-full bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all cursor-pointer" title="切換深色 / 淺色模式">
+                            <i class="fa-solid fa-moon" id="theme-icon"></i>
+                        </button>
+                    </div>
+
+                    <a href="#contact" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 dark:bg-brand-600 dark:hover:bg-brand-500 text-white font-medium rounded-full shadow-sm hover:shadow-md transition-all text-sm">
+                        聯絡與合作
+                    </a>
+                </div>
+
+                <!-- Mobile Navigation Control Group -->
+                <div class="md:hidden flex items-center gap-2">
+                    <button id="music-btn-mobile" type="button" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-base focus:outline-none" title="音樂">
+                        <i class="fa-solid fa-music" id="music-icon-mobile"></i>
+                    </button>
+                    <button id="theme-btn-mobile" type="button" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-base focus:outline-none" title="主題">
+                        <i class="fa-solid fa-moon" id="theme-icon-mobile"></i>
+                    </button>
+                    <button id="mobile-menu-btn" type="button" class="text-slate-600 dark:text-slate-300 hover:text-slate-900 p-2 rounded-lg focus:outline-none" aria-label="Toggle menu">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div class="hidden md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3" id="mobile-menu">
+            <a href="#about" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-brand-600 font-medium border-b border-slate-100 dark:border-slate-800">關於我</a>
+            <a href="#impact" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-brand-600 font-medium border-b border-slate-100 dark:border-slate-800">量化成果</a>
+            <a href="#competencies" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-brand-600 font-medium border-b border-slate-100 dark:border-slate-800">專業技能</a>
+            <a href="#philosophy" class="block py-2 text-slate-700 dark:text-slate-200 hover:text-brand-600 font-medium border-b border-slate-100 dark:border-slate-800">核心信念</a>
+            <a href="#contact" class="block mt-4 text-center py-3 bg-slate-900 text-white font-medium rounded-xl shadow">
+                聯絡與合作
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-28 pb-16 md:pt-36 md:pb-28 bg-slate-50 dark:bg-slate-950 hero-bg-light dark:hero-bg-dark transition-colors duration-300 text-slate-900 dark:text-slate-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-200/60 dark:bg-slate-800/80 border border-slate-300/50 dark:border-slate-700/60 text-slate-700 dark:text-slate-200 text-xs sm:text-sm font-medium tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-cyanAccent-500 animate-pulse"></span>
+                        尋求 Solution Consultant / 藥廠 & SaaS PM 挑戰
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                        Biotech & Pharma<br class="hidden sm:inline"/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-brand-600 to-cyanAccent-600 dark:from-white dark:via-brand-400 dark:to-cyanAccent-400">
+                            Digital QMS Specialist
+                        </span>
+                    </h1>
+                    <p class="text-lg sm:text-xl font-medium text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0">
+                        Solution Consultant | Ex-QA turned Product Manager | GxP & CSV Expertise
+                    </p>
+                    <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        專注於生技製藥產業的 QMS 數位轉型與法規合規顧問，致力將「品質管理」轉化為企業可量化的核心商業價值。
+                    </p>
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 dark:bg-brand-600 dark:hover:bg-brand-500 text-white font-medium rounded-xl shadow-lg transition-all text-center text-sm">
+                            預約顧問諮詢 / 職涯合作
+                        </a>
+                        <a href="#about" class="w-full sm:w-auto px-8 py-3.5 bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium rounded-xl border border-slate-200 dark:border-slate-700 transition-all text-center text-sm">
+                            探索職涯經歷
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Avatar Card matching headshot styling -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-sm lg:max-w-none">
+                        <div class="absolute -top-6 -right-6 w-72 h-72 bg-brand-400/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="relative glass-card-light dark:glass-card-dark rounded-3xl p-6 sm:p-8 shadow-xl text-center">
+                            
+                            <!-- User Photo Portrait Container -->
+                            <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto mb-6 rounded-2xl overflow-hidden ring-1 ring-slate-200 dark:ring-slate-700 shadow-md bg-slate-100 dark:bg-slate-800">
+                                <img 
+                                    src="https://img.ai365.fans/cdn-cgi/image/width=1400,quality=90,format=auto/artworks/f97a83c1-a180-474f-aeb7-76875de13cf1/vwqi4p4ddmp.png" 
+                                    alt="Digital QMS Specialist Portrait" 
+                                    class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
+                                    onerror="this.src='https://placehold.co/400x400/0284c7/ffffff?text=QMS+Specialist'"
+                                />
+                            </div>
+
+                            <div class="space-y-2.5 text-left">
+                                <div class="p-3 bg-white/70 dark:bg-slate-800/80 rounded-xl border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400">合規能力</span>
+                                    <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">GxP & FDA Part 11</span>
+                                </div>
+                                <div class="p-3 bg-white/70 dark:bg-slate-800/80 rounded-xl border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400">商業變現</span>
+                                    <span class="text-xs font-semibold text-brand-600 dark:text-brand-400">NTD 1,500萬+ 業績</span>
+                                </div>
+                                <div class="p-3 bg-white/70 dark:bg-slate-800/80 rounded-xl border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400">跨界思維</span>
+                                    <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">QA 品保 ✕ PM 產品經理</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-16 md:py-24 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">About Me</h2>
+                <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">身份背景與職涯定位</h3>
+                <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                    擁有 <strong>5 年生技製藥產業</strong>深耕經驗，具備 <strong>QA 品質保證</strong>實戰背景與 <strong>產品經理（PM）</strong>營運思維。擅長站在客戶痛點第一線，將複雜法規轉譯為可落行的數位軟體架構。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 dark:bg-slate-800/60 rounded-2xl p-8 border border-slate-200/80 dark:border-slate-700/60 hover:shadow-lg transition-all">
+                    <div class="w-12 h-12 bg-brand-50 dark:bg-slate-700 text-brand-600 dark:text-brand-400 rounded-xl flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-notes-medical"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">QA 品質實戰經驗</h4>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        深諳藥廠與生技企業品質保證運作邏輯，熟悉各階段 GxP 規範與稽核挑戰，能從實務層面精準發現潛在合規風險。
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-slate-800/60 rounded-2xl p-8 border border-slate-200/80 dark:border-slate-700/60 hover:shadow-lg transition-all">
+                    <div class="w-12 h-12 bg-cyanAccent-500/10 dark:bg-slate-700 text-cyanAccent-600 dark:text-cyanAccent-400 rounded-xl flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">法規轉譯與數位化</h4>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        擅長站在客戶痛點第一線，將複雜抽象的法規條文與稽核需求，精準轉譯為清晰可執行的數位語言與軟體架構。
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-slate-800/60 rounded-2xl p-8 border border-slate-200/80 dark:border-slate-700/60 hover:shadow-lg transition-all">
+                    <div class="w-12 h-12 bg-slate-200/70 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-3">PM 商業與營運思維</h4>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        兼具產品營運思維，能連結客戶合規需求與商業利益，驅動 QMS 軟體產品的商業變現與市場策略推廣。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="impact" class="py-16 md:py-24 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Key Impact & Achievements</h2>
+                <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">職責貢獻與量化實績</h3>
+                <p class="mt-4 text-slate-600 dark:text-slate-300">
+                    結合法規專業與商業策略，為企業與客戶創造可顯著量化的營運價值。
+                </p>
+            </div>
+
+            <!-- Stats Highlight -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-8 border border-slate-200/80 dark:border-slate-700/60 text-center shadow-sm hover:shadow-md transition-all">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-cyanAccent-600 dark:from-brand-400 dark:to-cyanAccent-400 mb-2">
+                        NT$ 15M+
+                    </div>
+                    <div class="text-sm font-semibold text-slate-800 dark:text-slate-200">QMS 數位解決方案銷售業績</div>
+                    <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">成功證明軟體產品技術與商業策略的完美結合</p>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-8 border border-slate-200/80 dark:border-slate-700/60 text-center shadow-sm hover:shadow-md transition-all">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-brand-600 dark:text-brand-400 mb-2">
+                        5+ 年
+                    </div>
+                    <div class="text-sm font-semibold text-slate-800 dark:text-slate-200">生技製藥產業深耕經驗</div>
+                    <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">涵蓋品質保證、軟體產品管理與解決方案規劃</p>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-8 border border-slate-200/80 dark:border-slate-700/60 text-center shadow-sm hover:shadow-md transition-all">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-cyanAccent-600 dark:text-cyanAccent-400 mb-2">
+                        100%
+                    </div>
+                    <div class="text-sm font-semibold text-slate-800 dark:text-slate-200">稽核疑慮精準解答率</div>
+                    <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">協助藥廠精準優化品質流程與降解營運風險</p>
+                </div>
+            </div>
+
+            <!-- Detailed Impact List -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-6 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex items-start gap-4 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 dark:bg-slate-700 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-box-archive"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">產品全生命週期管理（PLM）</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            主導公司代理之 QMS 軟體產品全生命週期規劃，精準進行市場定位、推廣策略制定與客戶端的專案導入落地。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex items-start gap-4 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-cyanAccent-500/10 dark:bg-slate-700 text-cyanAccent-600 dark:text-cyanAccent-400 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">高難度稽核與合規應對</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            憑藉對 GxP、FDA 21 CFR Part 11 等嚴苛法規的敏銳度，協助多家藥廠與生技企業優化品質管理流程，成功面對國際稽核。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competencies Section -->
+    <section id="competencies" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Core Competencies</h2>
+                <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">核心專業技能</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Skill Card 1 -->
+                <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 dark:bg-slate-700 text-brand-600 dark:text-brand-400 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-book-medical"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-2">領域知識與法規轉譯</h4>
+                    <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> GxP 法規深度解讀</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> FDA 21 CFR Part 11</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> QMS 數位 Solutions 建議</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> QA 流程優化與稽核應對</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Card 2 -->
+                <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-cyanAccent-500/10 dark:bg-slate-700 text-cyanAccent-600 dark:text-cyanAccent-400 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-2">顧問式解決方案規劃</h4>
+                    <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 生技製藥實務案例分析</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 客戶痛點共感與挖掘</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 產品高階展示 (Demo)</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 需求轉譯為規格文件</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Card 3 -->
+                <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-2">專案與產品管理</h4>
+                    <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 產品全生命週期管理</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 跨部門/上對下溝通協調</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 跨團隊資源整合</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 專案時程與質量控管</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Card 4 -->
+                <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-2">關鍵個人特質</h4>
+                    <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 直面困難的高執行力</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 極佳的溝通黏著度</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 顧問式影響力</li>
+                        <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-500"></i> 高度韌性與問題解決者</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Philosophy Section -->
+    <section id="philosophy" class="py-16 md:py-24 bg-white dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800/80 text-brand-600 dark:text-brand-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-6">
+                <i class="fa-solid fa-quote-left"></i>
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight">
+                「讓品質不再只是合規成本，<br class="hidden sm:block"/>而是企業最具現化的核心價值。」
+            </h2>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto mb-10">
+                我相信，數位化不是為了取代傳統流程，而是透過技術賦能品保（QA），讓品質管理成為企業加速成長與國際接軌的引擎。
+            </p>
+
+            <!-- Target Roles Card -->
+            <div class="glass-card-light dark:glass-card-dark rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 max-w-3xl mx-auto text-left shadow-sm">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-handshake text-brand-600 dark:text-brand-400"></i> 期望合作與職涯發展 (Open to Opportunities)
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                    目前正積極尋求 <strong>Solution Consultant（解決方案顧問）</strong>、<strong>國際藥廠/醫材廠 PM/顧問</strong> 等挑戰。
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-medium">外商藥廠</span>
+                    <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-medium">知名 SaaS 生技軟體服務商</span>
+                    <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-medium">醫療科技 (MedTech) 新創</span>
+                    <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-medium">跨國數位轉型專案</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Contact</h2>
+                    <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">與我聯繫與探討合作</h3>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                        歡迎與我聯繫，共同探討生技製藥產業的數位化解決方案與品質轉型策略！
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-center text-brand-600 dark:text-brand-400 shadow-sm">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">電子郵件 / Email</div>
+                                <a href="mailto:SamHsu@GGA.com" class="font-medium text-slate-900 dark:text-white text-sm hover:text-brand-600 dark:hover:text-brand-400 transition-colors">SamHsu@GGA.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-center text-brand-600 dark:text-brand-400 shadow-sm">
+                                <i class="fa-brands fa-linkedin-in text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">社群連結 / LinkedIn</div>
+                                <a href="https://www.linkedin.com/in/sam-h-492b0940a" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 dark:text-white text-sm hover:text-brand-600 dark:hover:text-brand-400 transition-colors">linkedin.com/in/sam-h-492b0940a</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-center text-brand-600 dark:text-brand-400 shadow-sm">
+                                <i class="fa-solid fa-location-dot text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400">服務據點 / Location</div>
+                                <div class="font-medium text-slate-900 dark:text-white text-sm">GGA Company</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Card -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-700/60 shadow-lg">
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">您的姓名 / Name</label>
+                                <input type="text" required placeholder="請輸入姓名" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand-500 text-sm">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">公司/機構名稱 Company</label>
+                                    <input type="text" placeholder="請輸入公司名稱" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand-500 text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">電子郵件 / Email</label>
+                                    <input type="email" required placeholder="name@company.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand-500 text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">諮詢主題 / Topic</label>
+                                <select class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-brand-500 text-sm">
+                                    <option>QMS 數位轉型顧問諮詢</option>
+                                    <option>職涯合作機會 (Solution Consultant / PM)</option>
+                                    <option>GxP 法規與系統合規演講/交流</option>
+                                    <option>其他事項</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">諮詢或合作內容 / Message</label>
+                                <textarea rows="4" required placeholder="請簡述您的需求或合作構想..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-brand-500 text-sm"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 bg-slate-900 dark:bg-brand-600 hover:bg-slate-800 dark:hover:bg-brand-500 text-white font-medium rounded-xl transition-all shadow-md text-sm cursor-pointer">
+                                送出訊息
+                            </button>
+                        </form>
+
+                        <!-- Message Box Alert -->
+                        <div id="form-response" class="hidden mt-4 p-4 rounded-xl bg-cyanAccent-500/10 border border-cyanAccent-500/30 text-cyanAccent-600 dark:text-cyanAccent-400 text-sm text-center">
+                            <i class="fa-solid fa-circle-check mr-2"></i> 感謝您的來訊！訊息已成功送出，我將儘速與您聯繫。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-white dark:bg-slate-950 text-slate-500 dark:text-slate-400 text-xs text-center border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Biotech & Pharma Digital QMS Specialist. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                }
+            });
+        }
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // 2. Reliable Audio Controller Architecture
+        let isAudioPlaying = false;
+        const audioUrl = "https://img.ai365.fans/artworks/f97a83c1-a180-474f-aeb7-76875de13cf1/cqnonezcj1.mp3";
+        const globalAudio = new Audio(audioUrl);
+        globalAudio.loop = true;
+
+        const musicBtn = document.getElementById('music-btn');
+        const musicBtnMobile = document.getElementById('music-btn-mobile');
+        const musicIcon = document.getElementById('music-icon');
+        const musicIconMobile = document.getElementById('music-icon-mobile');
+
+        function setMusicUIState(playing) {
+            isAudioPlaying = playing;
+            const iconClass = playing ? "fa-solid fa-pause" : "fa-solid fa-music";
+            
+            if (musicIcon) musicIcon.className = iconClass;
+            if (musicIconMobile) musicIconMobile.className = iconClass;
+
+            if (playing) {
+                musicBtn?.classList.add("text-brand-600", "animate-pulse");
+                musicBtnMobile?.classList.add("text-brand-600", "animate-pulse");
+            } else {
+                musicBtn?.classList.remove("text-brand-600", "animate-pulse");
+                musicBtnMobile?.classList.remove("text-brand-600", "animate-pulse");
+            }
+        }
+
+        function toggleAudioPlay() {
+            if (isAudioPlaying) {
+                globalAudio.pause();
+                setMusicUIState(false);
+            } else {
+                globalAudio.play()
+                    .then(() => {
+                        setMusicUIState(true);
+                    })
+                    .catch(err => {
+                        console.warn("Audio play blocked or failed:", err);
+                        setMusicUIState(false);
+                    });
+            }
+        }
+
+        musicBtn?.addEventListener('click', toggleAudioPlay);
+        musicBtnMobile?.addEventListener('click', toggleAudioPlay);
+
+        // 3. Complete Section-Inverting Dark / Light Mode Switcher
+        const themeBtn = document.getElementById('theme-btn');
+        const themeBtnMobile = document.getElementById('theme-btn-mobile');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeIconMobile = document.getElementById('theme-icon-mobile');
+        const htmlElement = document.documentElement;
+
+        function updateThemeUI(isDark) {
+            const iconClass = isDark ? "fa-solid fa-sun text-amber-400" : "fa-solid fa-moon text-slate-600";
+            if (themeIcon) themeIcon.className = iconClass;
+            if (themeIconMobile) themeIconMobile.className = iconClass;
+        }
+
+        function toggleThemeMode() {
+            const isDark = htmlElement.classList.toggle('dark');
+            // Save theme preference in localStorage for persistence
+            try {
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            } catch (e) {
+                console.warn('localStorage access failed:', e);
+            }
+            updateThemeUI(isDark);
+        }
+
+        themeBtn?.addEventListener('click', toggleThemeMode);
+        themeBtnMobile?.addEventListener('click', toggleThemeMode);
+
+        // Check system preference or stored theme on load
+        try {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+        } catch (e) {
+            // Default behavior if localStorage is unavailable
+        }
+
+        // Sync initial UI theme icon based on current document class
+        updateThemeUI(htmlElement.classList.contains('dark'));
+
+        // 4. Form Submit Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const responseBox = document.getElementById('form-response');
+            if (responseBox) {
+                responseBox.classList.remove('hidden');
+                document.getElementById('contact-form')?.reset();
+                
+                setTimeout(() => {
+                    responseBox.classList.add('hidden');
+                }, 6000);
+            }
+        }
+    </script>
+</body>
+</html>
